@@ -1,0 +1,28 @@
+p #00696c dark #4cd9de 
+o p #ffffff #003738
+p c #6ff6fa #004f51
+opc #002021 #6ff6fa
+
+s #725c00 #e7c349
+o s #ffffff #3c2f00
+s c #ffe080 #564500
+osc #231b00 #ffe080
+
+t #006b56 #60dbb9
+o t #ffffff #00382b
+t c #7ef8d4 #005140
+otc #002018 #7ef8d4
+
+e #ba1a1a #ffb4ab
+oe #ffffff #690005
+ec #ffdad6 #93000a
+oec #410002 #ffdad6
+
+bg #f8fdff #001f25
+ob #001f25 #a6eeff
+surf #f8fdff #001f25
+on surf #001f25 #a6eeff
+
+out #6f7979 #899393
+surf v #dae4e4 #3f4949
+on surf v #3f4949 #bec8c8
