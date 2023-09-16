@@ -1,7 +1,7 @@
 import axios from "axios"
 
 export const api = axios.create({
-    baseURL: "https://bioshocktube.vercel.app"
+    baseURL: "https://65051f36ef808d3c66efc950.mockapi.io/api"
 })
 
 export const getData = async (url, setData) => {
