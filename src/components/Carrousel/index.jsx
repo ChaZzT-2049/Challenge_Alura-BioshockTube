@@ -2,26 +2,30 @@ import styled from "styled-components"
 import {Slide} from "../Slide"
 const Slider = styled.div`
     width: 100%;
+    height: auto;
     max-width: 100em;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
 `;
 const SliderContainer = styled.div`
-    width: 300%;
+    width: ${props => props.size + "%"};
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
     align-items: center;
-
+    flex-grow: 1;
     transition: all 500ms ease;
 `;
 const SlideContainer = styled.div`
-    width: calc(100% / 3);
+    width: calc(100% / ${props => props.n});
     display: flex;
     justify-content: space-between;
-    background: ${({theme}) => theme.surface};
     height: 50vh;
+    background: ${({theme}) => theme.surface};
     @media screen and (min-width: 0px) and (max-width: 480px){
-        height: auto;
+        flex-direction: column-reverse;
+        height: 60vh;
     }
 `;
 const Controls = styled.ul`
@@ -43,25 +47,35 @@ const Control = styled.li`
     }
 `;
 const Carrousel = (props) => {
-    const {tema} = props
+    const {tema, categories} = props
+
+    let size = categories.length * 100
+
     const changeSlide = (slide) =>{
-        const controls = document.querySelectorAll(".control")
-        controls.forEach((c)=> c.classList.remove("active"))
         const carrousel = document.querySelector("#carrousel")
-        const calculo = slide * -(100 / controls.length);
+        const controls = document.querySelectorAll(".control");
+        controls.forEach((c) =>{c.classList.remove("active")})
+        const calculo = slide * -(100 / categories.length);
         carrousel.style.transform = `translateX(${calculo}%)`;
         controls[slide].classList.add("active")
     }
+
     return <Slider>
-        <SliderContainer id="carrousel">
-            <SlideContainer>1<Slide tema={tema} /></SlideContainer>
-            <SlideContainer>2<Slide tema={tema}/></SlideContainer>
-            <SlideContainer>3<Slide tema={tema}/></SlideContainer>
+        <SliderContainer size={size} id="carrousel">
+            {
+                categories.map(cat => ( 
+                    <SlideContainer n={categories.length} key={cat.id}>
+                        <Slide cat={cat} tema={tema} />
+                    </SlideContainer> 
+                ))
+            }
         </SliderContainer>
         <Controls>
-            <Control onClick={() =>changeSlide(0)} className="control active"/>
-            <Control onClick={() =>changeSlide(1)} className="control"/>
-            <Control onClick={() =>changeSlide(2)} className="control"/>
+            {
+                categories.map((cat, i) => ( 
+                    <Control key={cat.id} onClick={() =>changeSlide(i)} className={`control ${i === 0 ? "active" : ""}`}/> 
+                ))
+            }
         </Controls>
     </Slider>
 }

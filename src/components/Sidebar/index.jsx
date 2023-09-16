@@ -7,7 +7,7 @@ const Menu = styled.aside`
     position: fixed;
     z-index: 2;
     top: 0;
-    left: ${props => props.sidebar ? '0' : '-25vw'};
+    left: ${props => props.sidebarpc};
     width: 25vw;
     height: 100%;
     background: ${({theme})=>theme.on_p_container};
@@ -15,7 +15,7 @@ const Menu = styled.aside`
     transition: all 300ms ease-in;
     @media screen and (min-width: 0px) and (max-width: 480px){
         width: 60vw;
-        left: ${props => props.sidebar ? '0' : '-60vw'};
+        left: ${props => props.sidebarmov};
     }
 `;
 
@@ -24,19 +24,20 @@ const Sidebar = (props) => {
     const handleSidebar = () =>{
         setSidebar(!sidebar)
     }
-    return <Menu sidebar={sidebar}>
+    return <Menu sidebarpc={sidebar ? '0' : '-25vw'} sidebarmov={sidebar ? '0' : '-60vw'}>
         <FlexRow>
             <LogoContainer>
                 <Logo src={logo} />
                 <h1>Menu</h1>
             </LogoContainer>
-            <Icon color={({theme}) => theme.on_tertiary} bg={({theme}) => theme.tertiary} onClick={handleSidebar}><MdClose /></Icon>
+            <Icon className="tertiary" onClick={handleSidebar}><MdClose /></Icon>
         </FlexRow>
         <FlexColumn>
-            <Link onClick={handleSidebar} to="/"><Span color={({theme})=>theme.on_primary}><h3>Principal</h3></Span></Link>
-            <Link onClick={handleSidebar} to="/add/video"><Span color={({theme})=>theme.on_primary}><h3>Agregar  Video</h3></Span></Link>
-            <Link onClick={handleSidebar} to="/add7cat"><Span color={({theme})=>theme.on_primary}><h3>Nueva Categoria</h3></Span></Link>
-            <Link onClick={handleSidebar} to="/categories"><Span color={({theme})=>theme.on_primary}><h3>Categorias</h3></Span></Link>
+            <Link onClick={handleSidebar} to="/"><Span><h3>Principal</h3></Span></Link>
+            <Link onClick={handleSidebar} to="/add/video"><Span><h3>Agregar  Video</h3></Span></Link>
+            <Link onClick={handleSidebar} to="/categories/videos"><Span><h3>Videos</h3></Span></Link>
+            <Link onClick={handleSidebar} to="/add/cat"><Span><h3>Nueva Categoria</h3></Span></Link>
+            <Link onClick={handleSidebar} to="/categories"><Span><h3>Categorias</h3></Span></Link>
         </FlexColumn>
     </Menu>
 }

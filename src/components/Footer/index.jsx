@@ -22,6 +22,6 @@ const Footer = styled.footer`
 export const Bottombar = (props) =>{
     return <Footer>
         {props.theme ? <Logo src={logoD}/> : <Logo src={logoL}/>}
-        <Link className="add" to="/add/video"><Btn bg={({theme}) => theme.primary} color={({theme}) => theme.on_primary}>Nuevo Video</Btn></Link>
+        <Link className="add" to="/add/video"><Btn className="primary">Nuevo Video</Btn></Link>
     </Footer>
 }

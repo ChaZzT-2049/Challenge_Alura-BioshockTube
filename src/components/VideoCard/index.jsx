@@ -1,10 +1,11 @@
 import {Card, VideoCover, VideoInfo} from "../styled"
-export const VideoCard = () => {
+export const VideoCard = (props) => {
+    const { video } = props
     return <Card>
-        <VideoCover src="" alt="video cover" />
+        <VideoCover src={video.img} alt={video.img} />
         <VideoInfo>
-            <h2>Video Title</h2>
-            <p>Creador</p>
+            <h4>{video.titulo}</h4>
+            <p>{video.canal}</p>
         </VideoInfo>
     </Card>
 }

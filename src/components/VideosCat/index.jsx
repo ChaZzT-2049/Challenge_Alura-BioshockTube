@@ -2,12 +2,16 @@ import { VideoCard } from "../VideoCard"
 import { Link } from "react-router-dom";
 import styled from "styled-components"
 
+
 const VideosContainer = styled.div`
     display: flex;
     flex-wrap: nowrap;
     padding-top: 1rem;
     gap: 1rem;
     overflow-x: scroll;
+    height: auto;
+    align-items: center;
+    overflow-y: hidden;
     scroll-padding-top: .5rem;
     @media screen and (min-width: 0px) and (max-width: 480px){
         gap: .5rem;
@@ -15,13 +19,17 @@ const VideosContainer = styled.div`
     }
 `;
 
-export const VideosCat = () => {
+export const VideosCat = (props) => {
+    const { videos } = props
+
     return <VideosContainer>
-        <Link to="/videos/video"><VideoCard /></Link>
-        <Link to="/videos/video"><VideoCard /></Link>
-        <Link to="/videos/video"><VideoCard /></Link>
-        <Link to="/videos/video"><VideoCard /></Link>
-        <Link to="/videos/video"><VideoCard /></Link>
-        <Link to="/videos/video"><VideoCard /></Link>
+        {
+            videos.map(video => ( 
+                <Link key={video.id} to={`/videos/${video.id}`} ><VideoCard video={video} /></Link>
+            ))
+        }
+        {
+            videos.length === 0 && <span>Aún no hay videos</span>
+        }
     </VideosContainer>
 }

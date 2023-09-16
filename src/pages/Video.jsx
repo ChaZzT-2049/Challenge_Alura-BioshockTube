@@ -1,6 +1,10 @@
 import { Container, MainTitle, HomeVideo, Card, VideoCover, VideoInfo } from "../components/styled"
 import styled from "styled-components"
-import { Link } from "react-router-dom";
+
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+
+import { getData } from "../API/api";
 
 const Main = styled(Container)`
     display: flex;
@@ -50,41 +54,49 @@ const Descripcion = styled.p`
     }
 `;
 const Video = () => {
+    const {id} = useParams()
+    const [video, setVideo] = useState({})
+    const [videos, setVideos] = useState([])
+    const [related, setRelated] = useState([])
+
+    useEffect(()=>{
+        getData(`/videos/${id}`, setVideo)
+    }, [id])
+
+    useEffect(()=>{
+        getData(`/videos?cat_id=${video.cat_id}`, setVideos)
+    }, [video])
+
+    useEffect(()=>{
+        videosRelacionados(videos)
+    }, [videos])
+
+    const videosRelacionados = (videos) =>{
+        const videosFiltrados = videos.filter(vid => vid.id !== video.id)
+        setRelated(videosFiltrados)
+    }
+
     return <Main>
             <VideoContainer>
-                <VideoTitle>Titulo de Video</VideoTitle>
-                <MainVideo src="https://www.youtube.com/embed/9_KMoUkX_os?si=4cRumfsMjDhom-ss&amp;start=20" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></MainVideo>
-                <Descripcion>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas unde in libero similique doloribus?Quas unde in libero similique doloribus? Provident!Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas unde in libero similique doloribus?Quas unde in libero similique doloribus? Provident!</Descripcion>
+                <VideoTitle>{video.titulo}</VideoTitle>
+                <MainVideo src={video.video} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></MainVideo>
+                <Descripcion><h3>{video.canal}</h3><br />{video.descripcion}</Descripcion>
             </VideoContainer>
         <Relacionados>
             <h2>Relacionados</h2>
-            <Link to="/videos/video">
-                <VideoRelated>
-                    <VideoCover src="" alt="related cover" />
-                    <VideoInfo>
-                        <h2>Video Title</h2>
-                        <p>Creador</p>
-                    </VideoInfo>
-                </VideoRelated>
-            </Link>
-            <Link to="/videos/video">
-                <VideoRelated>
-                    <VideoCover src="" alt="related cover" />
-                    <VideoInfo>
-                        <h2>Video Title</h2>
-                        <p>Creador</p>
-                    </VideoInfo>
-                </VideoRelated>
-            </Link>
-            <Link to="/videos/video">
-                <VideoRelated>
-                    <VideoCover src="" alt="related cover" />
-                    <VideoInfo>
-                        <h2>Video Title</h2>
-                        <p>Creador</p>
-                    </VideoInfo>
-                </VideoRelated>
-            </Link>
+            {
+                related.map(vid => (
+                    <Link key={vid.id} to={`/videos/${vid.id}`}>
+                        <VideoRelated>
+                            <VideoCover src={vid.img} alt="related cover" />
+                            <VideoInfo>
+                                <h4>{vid.titulo}</h4>
+                                <p>{vid.canal}</p>
+                            </VideoInfo>
+                        </VideoRelated>
+                    </Link>
+                ))
+            }
         </Relacionados>
     </Main>
 }

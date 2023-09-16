@@ -14,7 +14,9 @@ const GlobalStyle = createGlobalStyle`
     h1{font-size: 1.75rem;}
     h2{font-size: 1.5rem;}
     h3{font-size: 1.25rem;}
+    h4{font-size: 1rem;}
     p{font-size: 1rem;}
+    a{color: inherit}
     small{font-size: .875rem}
     body{
         min-height: 100%;

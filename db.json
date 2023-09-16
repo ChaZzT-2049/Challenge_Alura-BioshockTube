@@ -1,0 +1,90 @@
+{
+  "categorias": [
+    {
+      "id": "f5cda0ff-e05b-4c37-a381-62a9b9a9a5be",
+      "nombre": "Curiosidades",
+      "meta": "Curiosidades sobre BioShock y su universo",
+      "descripcion": "Descubre alucinantes curiosidades sobre el videojuego de BioShock y sumérgete en este interesante universo.",
+      "color": "#e81717",
+      "img": "https://th.bing.com/th/id/R.eb4f5b56f5c5cc36e2f5c95c2becd1ff?rik=Z8bf50D18B4Rgw&pid=ImgRaw&r=0"
+    },
+    {
+      "id": "65b70be7-7ad1-4d81-a59c-2f0309fd21b4",
+      "nombre": "Análisis",
+      "meta": "Revisa reseñas y análisis del videojuego BioShock",
+      "descripcion": "¿Quieres comprar el videojuego, pero tienes dudas? Mira una reseña para descubrir todo lo que BioShock tiene para ofrecer.",
+      "color": "#b023d7",
+      "img": "https://i.ytimg.com/vi/ZP89y1q9CEQ/maxresdefault.jpg"
+    },
+    {
+      "id": "22590ef1-51da-4b7b-a545-e5cd73c9c7c6",
+      "nombre": "Gameplay",
+      "meta": "Explora la ciudad de Rapture sin salir de tu dispositivo.",
+      "descripcion": "Echa un vistazo a las horas de diversión que puedes tener al jugar BioShock. ¡No temas a los Splicers no pueden hacerte daño, solo darte un buen susto!.",
+      "color": "#3348e6",
+      "img": "https://i.ytimg.com/vi/OAfvlGi89CQ/maxresdefault.jpg"
+    },
+    {
+      "id": "b3bdf645-1481-492f-a050-0bec57fda1f6",
+      "nombre": "Biografías",
+      "meta": "Historia de los personajes más conocidos del universo de BioShock",
+      "descripcion": "Descubre lo que hay detrás de cada habitante de la ciudad. Conoce a las grandes mentes de Rapture y mira las biografías de tus personajes favoritos.",
+      "color": "#25c144",
+      "img": "https://i.pinimg.com/originals/d5/69/7f/d5697fe1b886737c5560b18a4d57d4c9.png"
+    },
+    {
+      "nombre": "Cinemáticas",
+      "meta": "Momentos clave del videojuego BioShock",
+      "descripcion": "Disfruta de los momentos más impresionantes de la campaña de BioShock. Revive las cinemáticas que más te gusten como si fuera la primera vez.",
+      "color": "#cb6715",
+      "img": "https://th.bing.com/th/id/R.5a53ff3c952ea1763eee59253ef0d5dd?rik=QbaAFJRCl7UOMA&riu=http%3a%2f%2fgameluster.com%2fwp-content%2fuploads%2f2015%2f01%2fBioshock_rapture.jpg&ehk=r5rolFaZSusWEVqXJBKoYEZ97RAdo9kcThLvG%2fBE7kg%3d&risl=&pid=ImgRaw&r=0",
+      "id": "7363ed4c-f352-42c7-ac76-bda320786c8b"
+    },
+    {
+      "id": "e4a446e0-88aa-4c05-bc17-244c8bce8fc2",
+      "nombre": "Audio Diarios",
+      "meta": "Audios grabados por los personajes del videojuego.",
+      "descripcion": "Descubre más acerca de los personajes de este universo a través de sus audio libros donde narran eventos de gran interés y que ayudan a saber más acerca de Rapture.",
+      "color": "#0daeba",
+      "img": "https://th.bing.com/th/id/R.6a5c90134ee03a9309c72b7e4036587d?rik=iMEW7LuKxDzMTg&pid=ImgRaw&r=0"
+    }
+  ],
+  "videos": [
+    {
+      "id": "8b9ce032-892d-470f-95f8-4641cdc80dda",
+      "titulo": "¿Qué son las Little Sisters y las Big Sisters?",
+      "canal": "Luis Dewitt",
+      "descripcion": "Unos de los personajes más interesantes que pudimos ver en el mundo de los videojuegos son las little sisters y las big sisters las cuales salen en los primeros dos juegos de Bioshock. Estas son unos personajes muy iconicas ya que tienen una apariencia muy interesante y diferente ademas poseen muchas habilidades especiales. En este video explicare detalladamente a las Little Sisters y las Big Sisters de la franquicia de Bioshock ademas hablare de sus origenes.",
+      "img": "https://i.ytimg.com/vi/o91M6tXHpQs/maxresdefault.jpg",
+      "video": "https://www.youtube.com/embed/o91M6tXHpQs?si=6FM2OiUXMtWjSEfr",
+      "cat_id": "f5cda0ff-e05b-4c37-a381-62a9b9a9a5be"
+    },
+    {
+      "id": "bef04d7e-f99d-4425-871d-5315c79f8e0b",
+      "titulo": "¿Qué son los Big Daddy? EXPLICACIÓN",
+      "canal": "Luis Dewitt",
+      "descripcion": "Uno de los seres más iconicos de los videojuegos son los Big Daddies que son los persoanjes mas iconicos de la franquicia de videojuegos de Bioshock. Estos seres son humanos mejorados, los cuales sirven como los protectores de las little sister en la ciudad submarina de Rapture. En este video explicare detalladamente a los Big Daddy y a todos los tipos y variantes que existen.",
+      "img": "https://i.ytimg.com/vi/AT6i6IPM3RY/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLC2hNGIbloq48_NnksM5A8r5XOOeg",
+      "video": "https://www.youtube.com/embed/AT6i6IPM3RY?si=sNH2OGrHM6bqmgrP",
+      "cat_id": "f5cda0ff-e05b-4c37-a381-62a9b9a9a5be"
+    },
+    {
+      "id": "9aeb2064-a73c-40be-994e-af19746875f0",
+      "titulo": "La Filosofía de BioShock y La Ilusión del Libre Albedrío",
+      "canal": "Cinamer",
+      "descripcion": "En este vídeo hablare sobre la filosofía, las ideologías y el verdadero significado oculto en Bioshock, donde abarcare además temas como el Objetivismo de Ayn Rand, el Determinismo Duro y el Libre Albedrío. ",
+      "img": "https://i.ytimg.com/vi/kYdmq06Gq1A/maxresdefault.jpg",
+      "video": "https://www.youtube.com/embed/kYdmq06Gq1A?si=xEGFk7Ef3_qMxJvz",
+      "cat_id": "65b70be7-7ad1-4d81-a59c-2f0309fd21b4"
+    },
+    {
+      "id": "f93a8f55-3639-4d76-9fdf-c59fad1741bb",
+      "titulo": "BIOSHOCK: La Distopía Objetivista de ANDREW RYAN",
+      "canal": "Mancuspia Vice",
+      "descripcion": "Bioshock se basa en la filosofía de Ayn Rand, el objetivismo, y usa a Andrew Ryan como el alter ego de la filósofa rusa-estadounidense.",
+      "img": "https://i.ytimg.com/vi/HZ4s-kGcm9Y/maxresdefault.jpg",
+      "video": "https://www.youtube.com/embed/HZ4s-kGcm9Y?si=7634bfE-HqiQQfVP",
+      "cat_id": "65b70be7-7ad1-4d81-a59c-2f0309fd21b4"
+    }
+  ]
+}

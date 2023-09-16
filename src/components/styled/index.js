@@ -4,7 +4,7 @@ export const Container = styled.div`
     padding: 1rem 2rem;
     background: ${({theme}) => theme.bg};
     color: ${({theme}) => theme.on_bg};
-    flex-grow: 1;
+    min-height: 100vh;
     transition: all 300ms ease;
     @media screen and (min-width: 0px) and (max-width: 480px){
         padding: 1rem;
@@ -107,26 +107,38 @@ export const Icon = styled.i`
     display: flex;
     align-items: center;
     width: min-content;
-    color: ${props => props.color};
-    background: ${props => props.bg};
     border-radius: .125rem;
     cursor: pointer;
+    &.tertiary{
+        color: ${({theme})=>theme.on_tertiary};
+        background: ${({theme})=>theme.tertiary};
+    }
     &:hover{
-        outline: 1px solid ${props => props.color};
+        outline: 1px solid currentColor;
     }
 `;
 export const Span = styled.span`
-    color: ${props => props.color};
+    color: ${({theme})=>theme.on_primary};
+
+    &.tertiary{
+        color: ${({theme}) => theme.on_t_container} 
+    }
 `;
 
 export const Btn = styled.button`
     padding: .5rem 1rem;
-    background: ${props => props.bg};
-    color: ${props => props.color};
     border: none;
     font-size: 1rem;
     cursor: pointer;
     border-radius: .25rem;
+    &.primary{
+        background: ${({theme}) => theme.primary};
+        color: ${({theme}) => theme.on_primary};
+    }
+    &.error{
+        background: ${({theme}) => theme.error};
+        color: ${({theme}) => theme.on_error};
+    }
 `;
 
 export const MainTitle = styled.h1`
@@ -136,10 +148,12 @@ export const MainTitle = styled.h1`
 `;
 
 export const CatTitle = styled.h2`
-    width: min-content;
-    background-color: ${({theme}) => theme.primary};
+    width: max-content;
+    background-color: ${props => props.color};
     padding: 1rem;
-    color: ${({theme}) => theme.on_primary};
+    color: ${({theme}) => theme.bg};
+    text-overflow: ellipsis;
+    white-space: nowrap;
 `;
 
 export const HomeVideo = styled.iframe`
@@ -153,22 +167,42 @@ height: 60vh;
 
 export const Card = styled.div`
     flex: 1 0 auto;
-    width: 20vw;
-    height: 30vh;
+    width: 25vw;
+    height: auto;
     display: flex;
     flex-direction: column;
     background: ${({theme}) => theme.surface};
+    box-sizing: border-box;
     color: ${({theme}) => theme.on_bg};
     @media screen and (min-width: 0px) and (max-width: 480px){
         width: 80vw;
-        height: 25vh;
         scroll-snap-align: center;
     }
 `;
 export const VideoCover = styled.img`
-    flex-grow: 1;
+    width: 100%;
+    height: 70%;
+    object-fit: contain;
     background: ${({theme}) => theme.p_container};
 `;
 export const VideoInfo = styled.div`
     padding: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+`;
+export const ErrorMessage = styled.span`
+    color: ${({theme}) => theme.error};
+`;
+
+export const BtnIcon = styled(Btn)`
+    display: flex;
+    gap: .5rem;
+    align-items: center;
+`;
+export const ActionsContainer = styled.div`
+    align-self: flex-start;
+    width: min-content;
+    margin-bottom: .5rem;
 `;

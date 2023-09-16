@@ -1,9 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { getData } from "../../API/api";
+import { Link, useNavigate } from "react-router-dom";
+
 import { styled } from "styled-components";
 import {Logo, LogoContainer, Icon, FlexRow, Btn, Span} from "../styled"
-import { Link } from "react-router-dom";
+
 import logo from "../../assets/img/logo.png"
 import { MdMenu, MdLightMode, MdDarkMode, MdOutlineSearch, MdClose } from "react-icons/md"
+
 const Header = styled.header`
     z-index: 1;
     position: sticky;
@@ -21,8 +25,8 @@ const Header = styled.header`
         & a{
             transition: all 200ms ease;
             padding: .0625rem 0;
-            opacity: ${(props) => props.showSearch ? "0" : "1"};
-            display: ${(props) => props.showSearch ? "none" : "block"};
+            opacity: ${(props) => props.opacity};
+            display: ${(props) => props.display};
         }
     }
 `;
@@ -35,7 +39,7 @@ const HeaderActions = styled(FlexRow)`
         }
     }
 `;
-const SearchContainer = styled.form`
+const SearchContainer = styled.div`
     display: flex;
     align-items: center;
     flex-grow: 1;
@@ -48,9 +52,9 @@ const SearchContainer = styled.form`
         outline: 1px solid ${({theme}) => theme.on_t_container};
     }
     @media screen and (min-width: 0px) and (max-width: 480px){
-        gap: ${(props) => props.showSearch ? ".5rem" : "0"};
-        flex-grow: ${(props) => props.showSearch ? "1" : "0"};
-        padding: ${(props) => props.showSearch ? ".125rem .25rem" : "0"};
+        gap: ${(props) => props.gap};
+        flex-grow: ${(props) => props.grow};
+        padding: ${(props) => props.padding};
     }
 `;
 
@@ -65,62 +69,105 @@ const InputSearch = styled.input`
     transition: all 200ms ease-in;
     @media screen and (min-width: 0px) and (max-width: 480px){
         width: 0;
-        flex-grow: ${(props) => props.showSearch ? "1" : "0"};
-        opacity: ${(props) => props.showSearch ? "1" : "0"};
+        flex-grow: ${(props) => props.grow};
+        opacity: ${(props) => props.grow};
     }
 `;
 const SearchResults = styled.div`
     position: fixed;
     top: 3.5rem;
     left: 0;
-    height: auto;
+    height: 30vh;
     width: 60%;
     margin: 0 20%;
     padding: 1rem;
     background: ${({theme}) => theme.surface};
     border-radius: 0 0 .5rem .5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
     @media screen and (min-width: 0px) and (max-width: 480px){
         margin: 0;
         width: 100%;
         border-radius: 0;
+        height: 50vh;
+    }
+`;
+const Result = styled.span`
+    padding: .5rem;
+    cursor: pointer;
+    &:hover{
+        background: ${({theme}) => theme.bg};
     }
 `;
 const Topbar = (props) => {
+    const navigate = useNavigate();
     const [showSearch, setShowSearch] = useState(false);
-    const { setSidebar, sidebar} = props
+    const [search, setSearch] = useState("")
+    const [results, setResults] = useState([])
+    const { setSidebar, sidebar, url} = props
+
+    const [videos, setVideos] = useState([]);
+    useEffect(() =>{
+        getData(url, setVideos)
+    },[url])
+
     const handleTheme = () =>{
         props.setTheme(!props.theme)
     }
     const handleSidebar = () =>{
         setSidebar(!sidebar)
     }
-
     const handleSearchBar = () =>{
         setShowSearch(!showSearch)
         const input = document.querySelector("#inputSearch");
         showSearch ? input.blur() : input.focus()
+        showSearch && setSearch("")
+        showSearch && setResults([])
+    }
+    const searchVideo = (e) =>{
+        const query = e.target.value.toLowerCase()
+        setSearch(e.target.value)
+        const queryresults = videos.filter((video) => video.titulo.toLowerCase().includes(query))
+        setResults(queryresults)
     }
 
-    return <Header showSearch={showSearch}>
+    const redirectResult = (id) => {
+        navigate(`/videos/${id}`); 
+        handleSearchBar()
+    }
+
+    return <Header opacity={showSearch ? "0" : "1"} display={showSearch ? "none" : "block"}>
         <HeaderActions>
             <Icon onClick={handleSidebar}><MdMenu/></Icon>
             <Link to="/">
                 <LogoContainer>
-                    <Logo src={logo} /><Span color={({theme}) => theme.on_t_container} ><h1>Tube</h1></Span>
+                    <Logo src={logo} /><Span className="tertiary"><h1>Tube</h1></Span>
                 </LogoContainer>
             </Link>
         </HeaderActions>
-        <SearchContainer showSearch={showSearch}>
-                <InputSearch onFocus={handleSearchBar} onBlur={handleSearchBar} id="inputSearch" showSearch={showSearch} type="text" placeholder="Buscar Videos" />
+        <SearchContainer grow={showSearch ? "1" : "0"} gap={showSearch ? ".5rem" : "0"} padding={showSearch ? ".125rem .5rem" : "0"}>
+                <InputSearch 
+                    onChange={(e) => searchVideo(e)} 
+                    value={search} 
+                    onFocus={handleSearchBar} 
+                    id="inputSearch" 
+                    grow={showSearch ? "1" : "0"} 
+                    type="text" 
+                    placeholder="Buscar Videos"
+                />
                 <Icon onClick={handleSearchBar}>{showSearch ? <MdClose/> : <MdOutlineSearch />}</Icon>
                 {showSearch && 
                     <SearchResults>
-                        <h3>Resultados:</h3>
+                        <h3>Resultados: {results.length} </h3>
+                        {
+                            results.map((result) => { return <Result onClick={() => {redirectResult(result.id)}} key={result.id}>{result.titulo}</Result>})
+                        }
                     </SearchResults>
                 }
         </SearchContainer>
         <HeaderActions>
-            <Link className="add" to="/add/video"><Btn bg={({theme}) => theme.primary} color={({theme}) => theme.on_primary}>Nuevo Video</Btn></Link>
+            <Link className="add" to="/add/video"><Btn className="primary">Nuevo Video</Btn></Link>
         </HeaderActions>
         <Icon onClick={handleTheme}>{props.theme ? <MdLightMode/> : <MdDarkMode />}</Icon>
     </Header>
