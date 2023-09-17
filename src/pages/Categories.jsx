@@ -1,4 +1,4 @@
-import { Container, MainTitle, FlexRow, FormField, Btn, Icon, BtnIcon, ActionsContainer } from "../components/styled"
+import { Container, MainTitle, FlexRow, FormField, Btn, Icon, BtnIcon, ActionsContainer, ModalContainer, Modal, ModalTitle } from "../components/styled"
 import styled from "styled-components"
 
 import FormInput from "../components/FormInput";
@@ -53,6 +53,7 @@ const CardElement = styled.div`
     justify-content: center;
     align-items: center;
     padding: 0 .5rem;
+    &:has(p){align-items: flex-start; overflow-y: auto;}
     &:has(img){
         background: ${({theme}) => theme.surface};
         border-radius: .5rem 0 0 .5rem;
@@ -89,38 +90,9 @@ const CardElement = styled.div`
 const TitleColored = styled.h2`
     border-bottom: 4px solid ${props => props.color};
     width: 100%;
-`;
-
-const ModalContainer = styled.div`
-    z-index: 5;
-    position: fixed;
-    top: 0;
-    left: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    background: rgba(0,0,0,0.5);
-`;
-const Modal = styled.section`
-    width: 90%;
-    max-width: 650px;
-    height: auto;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1rem;
-    background: ${({theme}) => theme.surface};
-    padding: 1rem;
-    border-radius: .5rem;
-`;
-const ModalTitle = styled(MainTitle)`
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin: 0;
-    align-items: center;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 `;
 const Categories = (props) => {
     const navigate = useNavigate()
@@ -145,7 +117,7 @@ const Categories = (props) => {
             deleteData(url)
             setEliminar("")
             setModal(!modal)
-            navigate("/messages/eliminar")
+            navigate("/messages/eliminar", {state: {mensaje: "Categoria Eliminada", link: "/categories", action: "Regresar"}})
         }else{
             alert("El código es incorrecto")
         }

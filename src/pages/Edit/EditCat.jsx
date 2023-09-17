@@ -44,8 +44,7 @@ const EditCat = () =>{
             img
         }
         if(codigo === "ChaZzT2049"){
-            putData(url, Data)
-            navigate("/categories")
+            putData(url, Data).then(response => navigate("/categories"))
         }else{
             alert("Codigo incorrecto")
         }

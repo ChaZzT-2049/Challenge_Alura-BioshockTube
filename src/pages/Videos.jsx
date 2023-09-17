@@ -1,11 +1,16 @@
-import { Container, MainTitle, FormField, FlexColumn, FlexRow, Btn } from "../components/styled"
+import { Container, MainTitle, FormField, FlexColumn, FlexRow, Btn, BtnIcon, Icon, ModalContainer, Modal, ModalTitle } from "../components/styled"
 import styled from "styled-components"
 
-import FormSelect from "../components/FormSelect"
+import {MdClear, MdDelete} from "react-icons/md"
+
+import FormSelect from "../components/FormSelect";
+import FormInput from "../components/FormInput";
 import { VideoCard } from "../components/VideoCard";
 
 import { useEffect, useState } from "react";
-import { getData } from "../API/api";
+import { getData, deleteData } from "../API/api";
+
+import { Link, useNavigate } from "react-router-dom";
 
 const Category = styled(FlexColumn)`
     padding: 0;
@@ -22,11 +27,16 @@ const VideosCatContainer = styled.div`
     gap: 1rem;
 `;
 const Videos = (props) => {
+    const navigate = useNavigate()
     const {url} = props
     const [categories, setCategories] = useState([])
     const [category, setCategory] = useState("")
     const [selectedCat, setSelectedCat] = useState({})
     const [videos, setVideos] = useState([])
+    const [modal, setModal] = useState(false)
+
+    const [codigo, setCodigo] = useState("");
+    const [eliminar, setEliminar] = useState("");
 
     useEffect(()=>{
         getData(url, setCategories)
@@ -46,6 +56,21 @@ const Videos = (props) => {
         getData(`/videos?cat_id=${selectedCat.id}`, setVideos)
     }, [selectedCat])
 
+    const showModal = () =>{
+        setModal(!modal)
+    }
+    const DeleteVid = () => {
+        if(codigo === "ChaZzT2049"){
+            const url = `/videos/${eliminar}`
+            deleteData(url)
+            setEliminar("")
+            setModal(!modal)
+            navigate("/messages/eliminar", {state: {mensaje: "Video Eliminado", link: "/videos", action: "Regresar"}})
+        }else{
+            alert("El código es incorrecto")
+        }
+    }
+
     return <Container>
         <MainTitle>Videos en BioshockTube</MainTitle>
         <Category>
@@ -57,16 +82,30 @@ const Videos = (props) => {
         <VideosCatContainer>
             {
                 videos.map(video => (
-                    <div>
-                        <VideoCard key={video.id} video={video} />
+                    <div key={video.id}>
+                        <Link to={`/videos/${video.id}`}>
+                            <VideoCard  video={video} />
+                        </Link>
                         <FlexRow>
-                            <Btn className="primary">Editar</Btn>
-                            <Btn className="error">Eliminar</Btn>
+                            <Link to={`/edit/vid/${video.id}`}><Btn className="primary">Editar</Btn></Link>
+                            <Btn onClick={() => {showModal(); setEliminar(video.id);}} className="error">Eliminar</Btn>
                         </FlexRow>
                     </div>
                 ))
             }
         </VideosCatContainer>
+        {
+            modal && <ModalContainer>
+                <Modal>
+                    <ModalTitle>Eliminar Video <Icon onClick={() => {setModal(!modal)}}><MdClear/></Icon></ModalTitle>
+                    <p>¿Estas Sguro que deseas eliminar este video?</p>
+                    <FormField>
+                        <FormInput type="password" required={true} value={codigo} setValue={setCodigo} id="codigo" placeholder="Ingresa el código" label="Código de confirmación"/>
+                    </FormField>
+                    <BtnIcon onClick={() => {DeleteVid()}} className="error">Eliminar Video <MdDelete/></BtnIcon>
+                </Modal>
+            </ModalContainer>
+        }
     </Container>
 }
 export default Videos

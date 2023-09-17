@@ -22,7 +22,7 @@ export const Categorias = (props) => {
         <CatTitleCont color={cat.color.toString()}>
             <CatTitle color={cat.color.toString()}>{cat.nombre}</CatTitle>
             <small>{cat.meta}</small>
-            <Link to={`/categories/videos`} >
+            <Link to={`/videos`} >
                 <Icon><MdArrowForward /></Icon>
             </Link>
         </CatTitleCont>

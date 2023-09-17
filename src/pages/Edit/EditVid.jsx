@@ -1,18 +1,18 @@
-import { useNavigate } from "react-router-dom";
-import { useState, useEffect } from "react";
-
-import { Container, MainTitle, FormContainer, FormField, Btn, ErrorMessage } from "../../components/styled"
-
+import { Container, MainTitle, FormContainer, FormField, Btn, ActionsContainer, BtnIcon } from "../../components/styled"
 import FormInput from "../../components/FormInput";
 import FormArea from "../../components/FormArea";
 import FormSelect from "../../components/FormSelect";
 
-import { getData, postData } from "../../API/api";
-import { v4 as uuid } from "uuid";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
-const AddVideo = (props) =>{
-    const navigate = useNavigate();
+import { getData, putData } from "../../API/api";
 
+import { MdKeyboardArrowLeft } from "react-icons/md"
+
+const EditVid = (props) =>{
+    const navigate = useNavigate()
+    const {id} = useParams()
     const {url} = props
 
     const [titulo, setTitulo] = useState("");
@@ -23,35 +23,54 @@ const AddVideo = (props) =>{
     const [cat_id, setCat] = useState("");
     const [codigo, setCodigo] = useState("");
 
+    const [vid, setVid] = useState({})
+
     const [categories, setCategories] = useState([])
     useEffect(() => {
         getData(url, setCategories)
     }, [url])
 
-    const subirVideo = (e) => {
+    useEffect(() => {
+        getData(`/videos/${id}`, setVid)
+    }, [id])
+
+    useEffect(() => {
+        setTitulo(vid.titulo)
+        setCanal(vid.canal)
+        setDescripcion(vid.descripcion)
+        setImg(vid.img)
+        setVideo(vid.video)
+        setCat(vid.cat_id)
+    }, [vid])
+
+    const editarVideo = (e) => {
         e.preventDefault()
         const Data = {
-            id: uuid(),
             titulo,
             canal,
             descripcion,
             img,
             video,
-            cat_id,
+            cat_id
         }
-        evaluarData(codigo, Data)
-    }
-    const evaluarData = (cod, datos) => {
-        if(cod === "ChaZzT2049"){
-            postData("/videos", datos).then(response => navigate("/videos"))
+        if(codigo === "ChaZzT2049"){
+            putData(`/videos/${id}`, Data).then(response => navigate("/videos"))
         }else{
-            alert("El código es incorrecto")
+            alert("Codigo incorrecto")
         }
     }
     return <Container>
-        <MainTitle>Agregar Video</MainTitle>
-        
-        <form onSubmit={(e) => {subirVideo(e)} }>
+        <MainTitle>
+            Editar Video
+        </MainTitle>
+
+        <ActionsContainer>
+            <Link to="/videos" >
+                <BtnIcon className="primary"><MdKeyboardArrowLeft/> Volver</BtnIcon>
+            </Link>
+        </ActionsContainer>
+
+        <form onSubmit={(e) => {editarVideo(e)} }>
             <FormContainer>
                 <FormField>
                     <FormInput required={true} label="Titulo" setValue={setTitulo} value={titulo} type="text" name="titulo" id="titulo" placeholder="Ingresa el titulo del video" />
@@ -75,10 +94,11 @@ const AddVideo = (props) =>{
                     <FormInput required={true} label="Codigo" setValue={setCodigo} value={codigo} type="password" id="code" placeholder="Ingresa el código de validación" />
                 </FormField>
                 <FormField>
-                <Btn className="primary" type="submit">Agregar</Btn>
+                <Btn className="primary" type="submit">Editar</Btn>
                 </FormField>
             </FormContainer>
         </form>
     </Container>
 }
-export default AddVideo
+
+export default EditVid

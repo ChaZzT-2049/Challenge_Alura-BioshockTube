@@ -35,7 +35,7 @@ const Sidebar = (props) => {
         <FlexColumn>
             <Link onClick={handleSidebar} to="/"><Span><h3>Principal</h3></Span></Link>
             <Link onClick={handleSidebar} to="/add/video"><Span><h3>Agregar  Video</h3></Span></Link>
-            <Link onClick={handleSidebar} to="/categories/videos"><Span><h3>Videos</h3></Span></Link>
+            <Link onClick={handleSidebar} to="/videos"><Span><h3>Videos</h3></Span></Link>
             <Link onClick={handleSidebar} to="/add/cat"><Span><h3>Nueva Categoria</h3></Span></Link>
             <Link onClick={handleSidebar} to="/categories"><Span><h3>Categorias</h3></Span></Link>
         </FlexColumn>

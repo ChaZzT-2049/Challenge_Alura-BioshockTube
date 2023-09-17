@@ -7,6 +7,8 @@ import Home from "./pages/Home";
 import AddVideo from "./pages/Add/AddVideo";
 import AddCat from "./pages/Add/AddCat";
 import EditCat from "./pages/Edit/EditCat";
+import EditVid from "./pages/Edit/EditVid";
+
 import Categories from "./pages/Categories";
 import MEliminar from "./pages/Messages/MessageEliminar";
 import Video from "./pages/Video"
@@ -37,10 +39,11 @@ function App() {
           <Route path="/add/video" element={<AddVideo url={urlCat}/>} />
           <Route path="/add/cat" element={<AddCat/>} />
           <Route path="/categories" element={<Categories urlCat={urlCat} />} />
-          <Route path="/categories/videos" element={<Videos url={urlCat}/>} />
+          <Route path="/videos" element={<Videos url={urlCat}/>} />
           <Route path="/messages/eliminar" element={<MEliminar/>}/>
           <Route path="/videos/:id" element={<Video/>} />
           <Route path="/edit/cat/:id" element={<EditCat/>} />
+          <Route path="/edit/vid/:id" element={<EditVid url={urlCat}/>} />
           <Route path="*" element={<Error404/>} />
         </Routes>
         <Bottombar theme={theme}/>

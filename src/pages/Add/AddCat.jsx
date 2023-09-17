@@ -31,8 +31,7 @@ const AddCat = () =>{
     }
     const evaluarData = (cod, datos) => {
         if(cod === "ChaZzT2049"){
-            postData("/categorias", datos)
-            navigate("/categories")
+            postData("/categorias", datos).then(response => navigate("/categories"))
         }else{
             alert("El código es incorrecto")
         }

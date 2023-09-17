@@ -206,3 +206,35 @@ export const ActionsContainer = styled.div`
     width: min-content;
     margin-bottom: .5rem;
 `;
+
+export const ModalContainer = styled.div`
+    z-index: 5;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+`;
+export const Modal = styled.section`
+    width: 90%;
+    max-width: 650px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: ${({theme}) => theme.surface};
+    padding: 1rem;
+    border-radius: .5rem;
+`;
+export const ModalTitle = styled(MainTitle)`
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    align-items: center;
+`;

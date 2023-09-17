@@ -80,7 +80,7 @@ const Video = () => {
             <VideoContainer>
                 <VideoTitle>{video.titulo}</VideoTitle>
                 <MainVideo src={video.video} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen></MainVideo>
-                <Descripcion><h3>{video.canal}</h3><br />{video.descripcion}</Descripcion>
+                <Descripcion><b>{video.canal}</b><br /><br />{video.descripcion}</Descripcion>
             </VideoContainer>
         <Relacionados>
             <h2>Relacionados</h2>

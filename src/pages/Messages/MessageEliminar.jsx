@@ -3,7 +3,7 @@ import { BtnIcon, MainTitle } from "../../components/styled"
 
 import { MdArrowBack } from "react-icons/md"
 
-import { Link } from "react-router-dom"
+import { Link, useLocation } from "react-router-dom"
 
 const MessageContainer = styled.div`
     z-index: 5;
@@ -28,12 +28,13 @@ const Alert = styled.div`
     border-radius: .5rem;
 `;
 const MEliminar = () => {
+    const {state} = useLocation()
     return <MessageContainer>
         <Alert>
             <MainTitle>
-                Categoria Eliminada
+                {state.mensaje}
             </MainTitle>
-            <Link to="/categories"><BtnIcon className="primary"><MdArrowBack/> Ver Categorías</BtnIcon></Link>
+            <Link to={state.link}><BtnIcon className="primary"><MdArrowBack/>{state.action}</BtnIcon></Link>
         </Alert>
     </MessageContainer>
 }
