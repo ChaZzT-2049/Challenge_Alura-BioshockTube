@@ -13,7 +13,7 @@ const SliderContainer = styled.div`
     display: flex;
     flex-flow: row nowrap;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-grow: 1;
     transition: all 500ms ease;
 `;
@@ -21,11 +21,10 @@ const SlideContainer = styled.div`
     width: calc(100% / ${props => props.n});
     display: flex;
     justify-content: space-between;
-    height: 50vh;
+    height: max-content;
     background: ${({theme}) => theme.surface};
     @media screen and (min-width: 0px) and (max-width: 480px){
         flex-direction: column-reverse;
-        height: 60vh;
     }
 `;
 const Controls = styled.ul`

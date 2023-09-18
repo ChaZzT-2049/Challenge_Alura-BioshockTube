@@ -17,6 +17,7 @@ const Main = styled(Container)`
 `;
 const VideoTitle = styled(MainTitle)`
     text-align: start;
+    margin-top: 0;
 `;
 const VideoContainer = styled.div`
     display: flex;
@@ -27,6 +28,7 @@ const VideoContainer = styled.div`
         & iframe{order: 0;}
         & h1{order: 1;}
         & p{order: 2;}
+        
     }
 `;
 const VideoRelated = styled(Card)`
@@ -40,8 +42,12 @@ const Relacionados = styled.div`
     flex-direction: column;
     gap: 1rem;
     width: 40%;
+    overflow-y: auto;
+    height: 100vh;
     @media screen and (min-width: 0px) and (max-width: 480px){
         width: 100%;
+        height: auto;
+        overflow-y: hidden;
     }
 `;
 const MainVideo = styled(HomeVideo)`

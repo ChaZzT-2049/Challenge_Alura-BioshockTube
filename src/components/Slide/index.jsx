@@ -10,11 +10,13 @@ const SlideLeft = styled(FlexColumn)`
 `;
 const SlideImg = styled.img`
     width: 50%;
-    object-fit: cover;
+    height: 50vh;
+    object-fit: fill;
     background: ${({theme}) => theme.primary};
     @media screen and (min-width: 0px) and (max-width: 480px){
         width: 100%;
-        height: 50%;
+        height: 30vh;
+        object-fit: cover;
     }
 `;
 const SlideTitle = styled(CatTitle)`

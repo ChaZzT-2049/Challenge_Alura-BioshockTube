@@ -86,6 +86,7 @@ const SearchResults = styled.div`
     display: flex;
     flex-direction: column;
     gap: .25rem;
+    overflow-y: auto;
     @media screen and (min-width: 0px) and (max-width: 480px){
         margin: 0;
         width: 100%;
