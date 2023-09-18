@@ -77,7 +77,8 @@ const SearchResults = styled.div`
     position: fixed;
     top: 3.5rem;
     left: 0;
-    height: 30vh;
+    height: auto;
+    max-height: 40vh;
     width: 60%;
     margin: 0 20%;
     padding: 1rem;
@@ -91,7 +92,8 @@ const SearchResults = styled.div`
         margin: 0;
         width: 100%;
         border-radius: 0;
-        height: 50vh;
+        height: auto;
+        max-height: 50vh;
     }
 `;
 const Result = styled.span`

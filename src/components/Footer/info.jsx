@@ -36,9 +36,9 @@ export const DevInfo = () => {
     return <Info>
         <h3>Desarrollado con <Heart /> por Carlos Eduardo Cortes Fernandez</h3>
         <Redes>
-            <LogoContainer><a href="https://github.com/ChaZzT-2049"><AiFillGithub className="icon-redes"/> Github</a></LogoContainer>
-            <LogoContainer><a href="https://www.linkedin.com/in/carloseduardowebdev"><AiFillLinkedin className="icon-redes"/>Linkedin</a></LogoContainer>
-            <LogoContainer><a href="https://chazzt-2049.github.io/Portafolio/"><AiFillCode className="icon-redes"/>Portafolio</a></LogoContainer>
+            <LogoContainer><a target="_blank" rel="noreferrer" href="https://github.com/ChaZzT-2049"><AiFillGithub className="icon-redes"/> Github</a></LogoContainer>
+            <LogoContainer><a target="_blank" rel="noreferrer" href="https://www.linkedin.com/in/carloseduardowebdev"><AiFillLinkedin className="icon-redes"/>Linkedin</a></LogoContainer>
+            <LogoContainer><a target="_blank" rel="noreferrer" href="https://chazzt-2049.github.io/Portafolio/"><AiFillCode className="icon-redes"/>Portafolio</a></LogoContainer>
         </Redes>
     </Info>
 }
