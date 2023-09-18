@@ -23,16 +23,28 @@ import { DevInfo } from "./components/Footer/info";
 import { useState } from "react";
 
 function App() {
+
+  if(!localStorage.getItem("theme")){
+    localStorage.setItem("theme", true.toString())
+  }
+  let temaUsuario = (localStorage.getItem("theme") === "true");
+
   const urlVideos="/videos"
   const urlCat="/categorias"
-  const [theme, setTheme] = useState(true);
+  const [theme, setTheme] = useState(temaUsuario);
   const [showSidebar, setShowSidebar] = useState(false);
+  
+  const toogleTheme = () =>{
+    setTheme(!theme)
+    temaUsuario = `${!theme}`
+    localStorage.theme = temaUsuario
+  }
 
   return (
     <ThemeProvider theme={theme ? LightTheme : DarkTheme}>
       <GlobalStyle />
       <Router>
-        <Topbar url={urlVideos} setTheme={setTheme} theme={theme} setSidebar={setShowSidebar} sidebar={showSidebar} />
+        <Topbar url={urlVideos} setTheme={toogleTheme} theme={theme} setSidebar={setShowSidebar} sidebar={showSidebar} />
         <Sidebar setSidebar={setShowSidebar} sidebar={showSidebar}/>
         <Routes>
           <Route path="/" element={<Home urlCat={urlCat} urlVideos={urlVideos} theme={theme}/>} />

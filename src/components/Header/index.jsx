@@ -108,16 +108,13 @@ const Topbar = (props) => {
     const [showSearch, setShowSearch] = useState(false);
     const [search, setSearch] = useState("")
     const [results, setResults] = useState([])
-    const { setSidebar, sidebar, url} = props
+    const { setSidebar, sidebar, url, setTheme} = props
 
     const [videos, setVideos] = useState([]);
     useEffect(() =>{
         getData(url, setVideos)
     },[url])
 
-    const handleTheme = () =>{
-        props.setTheme(!props.theme)
-    }
     const handleSidebar = () =>{
         setSidebar(!sidebar)
     }
@@ -172,7 +169,7 @@ const Topbar = (props) => {
         <HeaderActions>
             <Link className="add" to="/add/video"><Btn className="primary">Nuevo Video</Btn></Link>
         </HeaderActions>
-        <Icon onClick={handleTheme}>{props.theme ? <MdLightMode/> : <MdDarkMode />}</Icon>
+        <Icon onClick={() => { setTheme()}}>{props.theme ? <MdLightMode/> : <MdDarkMode />}</Icon>
     </Header>
 }
 export default Topbar
