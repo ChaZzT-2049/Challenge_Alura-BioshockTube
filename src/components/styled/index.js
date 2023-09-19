@@ -9,6 +9,9 @@ export const Container = styled.div`
     @media screen and (min-width: 0px) and (max-width: 480px){
         padding: 1rem;
     }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        padding: 1rem 1.5rem;
+    }
 `;
 
 export const FlexRow = styled.div`
@@ -33,6 +36,9 @@ export const FormContainer = styled(FlexColumn)`
     @media screen and (min-width: 0px) and (max-width: 480px){
         width: 100%;
         margin: 0;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        width: 80%;
     }
 `;
 export const FormField = styled.fieldset`
@@ -163,6 +169,10 @@ height: 60vh;
     width: 100%;
     height: 30vh;
 }
+@media screen and (min-width: 481px) and (max-width: 768px){
+    width: 90%;
+    height: 40vh;
+}
 `;
 
 export const Card = styled.div`
@@ -177,6 +187,9 @@ export const Card = styled.div`
     @media screen and (min-width: 0px) and (max-width: 480px){
         width: 80vw;
         scroll-snap-align: center;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        width: 30vw;
     }
 `;
 export const VideoCover = styled.img`

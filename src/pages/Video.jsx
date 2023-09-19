@@ -14,6 +14,9 @@ const Main = styled(Container)`
     @media screen and (min-width: 0px) and (max-width: 480px){
         flex-direction: column;
     }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        flex-direction: column;
+    }
 `;
 const VideoTitle = styled(MainTitle)`
     text-align: start;
@@ -30,11 +33,18 @@ const VideoContainer = styled.div`
         & p{order: 2;}
         
     }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        width: 100%;
+    }
 `;
 const VideoRelated = styled(Card)`
     width: 100%;
     @media screen and (min-width: 0px) and (max-width: 480px){
         width: 100%;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        width: calc(50vw - 2rem);
+        
     }
 `;
 const Relacionados = styled.div`
@@ -48,6 +58,15 @@ const Relacionados = styled.div`
         width: 100%;
         height: auto;
         overflow-y: hidden;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        overflow-y: hidden;
+        height: auto;
+        gap: .5rem;
+        & h2{width: 100%;}
     }
 `;
 const MainVideo = styled(HomeVideo)`
@@ -89,7 +108,7 @@ const Video = () => {
                 <Descripcion><b>{video.canal}</b><br /><br />{video.descripcion}</Descripcion>
             </VideoContainer>
         <Relacionados>
-            <h2>Relacionados</h2>
+        <h2>Relacionados</h2>
             {
                 related.map(vid => (
                     <Link key={vid.id} to={`/videos/${vid.id}`}>

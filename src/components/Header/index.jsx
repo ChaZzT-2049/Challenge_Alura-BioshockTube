@@ -29,12 +29,15 @@ const Header = styled.header`
             display: ${(props) => props.display};
         }
     }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        gap: .5rem
+    }
 `;
 const HeaderActions = styled(FlexRow)`
     gap: .5rem;
     padding: 0;
     @media screen and (min-width: 0px) and (max-width: 480px){
-        &:has(.add){
+        & .add{
             display: none;
         }
     }
@@ -55,6 +58,10 @@ const SearchContainer = styled.div`
         gap: ${(props) => props.gap};
         flex-grow: ${(props) => props.grow};
         padding: ${(props) => props.padding};
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        flex-grow: .5;
+        padding: .25rem;
     }
 `;
 
@@ -94,6 +101,10 @@ const SearchResults = styled.div`
         border-radius: 0;
         height: auto;
         max-height: 50vh;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        width: 80%;
+        margin: 0 10%;
     }
 `;
 const Result = styled.span`

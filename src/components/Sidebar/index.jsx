@@ -17,6 +17,10 @@ const Menu = styled.aside`
         width: 60vw;
         left: ${props => props.sidebarmov};
     }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        width: 40vw;
+        left: ${props => props.sidebartab};
+    }
 `;
 
 const Sidebar = (props) => {
@@ -24,7 +28,7 @@ const Sidebar = (props) => {
     const handleSidebar = () =>{
         setSidebar(!sidebar)
     }
-    return <Menu sidebarpc={sidebar ? '0' : '-25vw'} sidebarmov={sidebar ? '0' : '-60vw'}>
+    return <Menu sidebarpc={sidebar ? '0' : '-25vw'} sidebarmov={sidebar ? '0' : '-60vw'} sidebartab={sidebar ? '0' : '-40vw'}>
         <FlexRow>
             <LogoContainer>
                 <Logo src={logo} />

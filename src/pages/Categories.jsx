@@ -34,6 +34,17 @@ const Atributos = styled(FlexRow)`
     @media screen and (min-width: 0px) and (max-width: 480px){
         display: none;
     }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        display: none;
+    }
+`;
+
+const CatsContainer = styled.div`
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
 `;
 
 const CategoryCard = styled.div`
@@ -45,6 +56,12 @@ const CategoryCard = styled.div`
     @media screen and (min-width: 0px) and (max-width: 480px){
         flex-direction: column;
         height: max-content;
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        flex-direction: column;
+        height: max-content;
+        width: 48%;
+        gap: .5rem;
     }
 `;
 const CardElement = styled.div`
@@ -85,6 +102,24 @@ const CardElement = styled.div`
         & img{
             border-radius: .5rem .5rem 0 0;
         }
+    }
+    @media screen and (min-width: 481px) and (max-width: 768px){
+        & button, & a{
+           width: 100%;
+           align-self: flex-start;
+        }
+        &:has(img){
+            background: ${({theme}) => theme.surface};
+            padding: 0;
+            border-radius: .5rem .5rem 0 0;
+        }
+        & img{
+            border-radius: .5rem .5rem 0 0;
+        }
+        &:last-child{
+            padding-bottom: .5rem;
+        }
+        & p{overflow-y: hidden}
     }
 `;
 const TitleColored = styled.h2`
@@ -137,18 +172,21 @@ const Categories = (props) => {
             <h2>Editar</h2>
             <h2>Eliminar</h2>
         </Atributos>
+        <CatsContainer>
         {
             categories.map(cat => (
-                <CategoryCard key={cat.id}>
-                    <CardElement><img src={cat.img} alt={cat.nombre} /></CardElement>
-                    <CardElement><TitleColored color={cat.color.toString()}>{cat.nombre}</TitleColored></CardElement>
-                    <CardElement><p>{cat.descripcion}</p></CardElement>
-                    <CardElement><small>{cat.meta}</small></CardElement>
-                    <CardElement><Link to={`/edit/cat/${cat.id}`} ><Btn className="primary">Editar</Btn></Link></CardElement>
-                    <CardElement><Btn onClick={() => {showModal(); setEliminar(cat.id);}} className="error">Eliminar</Btn></CardElement>
-                </CategoryCard>
+                
+                    <CategoryCard key={cat.id}>
+                        <CardElement><img src={cat.img} alt={cat.nombre} /></CardElement>
+                        <CardElement><TitleColored color={cat.color.toString()}>{cat.nombre}</TitleColored></CardElement>
+                        <CardElement><p>{cat.descripcion}</p></CardElement>
+                        <CardElement><small>{cat.meta}</small></CardElement>
+                        <CardElement><Link to={`/edit/cat/${cat.id}`} ><Btn className="primary">Editar</Btn></Link></CardElement>
+                        <CardElement><Btn onClick={() => {showModal(); setEliminar(cat.id);}} className="error">Eliminar</Btn></CardElement>
+                    </CategoryCard>
             ))
         }
+        </CatsContainer>
         {
             categories.length === 0 && <div><h1>Aun no hay categorias </h1> <Link to="/add/cat">Añade una categoria</Link></div>
         }
